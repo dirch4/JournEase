@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:jurnease/core/constants/color.dart';
+import 'package:jurnease/pages/home.dart';
 
 class Onboarding extends StatelessWidget {
   const Onboarding({super.key});
@@ -133,7 +134,9 @@ class Onboarding extends StatelessWidget {
             left: 80,
             child: OutlinedButton(
               onPressed: () {
-
+                Navigator.push(context, 
+                MaterialPageRoute(builder: (context) => const Home()),
+                );
               },
               style: OutlinedButton.styleFrom(
                 backgroundColor: Colors.white,
@@ -152,7 +155,7 @@ class Onboarding extends StatelessWidget {
                   textStyle: const TextStyle(
                     fontSize: 18.0,
                     fontWeight: FontWeight.bold,
-                    color: Colors.black, // Warna teks hitam
+                    color: Colors.black, 
                   ),
                 ),
               ),

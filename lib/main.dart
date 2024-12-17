@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:jurnease/pages/home.dart';
 import 'package:jurnease/pages/onboarding.dart';
 import 'package:jurnease/pages/splashscreen.dart';
 
@@ -13,7 +14,7 @@ class MainApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return const MaterialApp(
       debugShowCheckedModeBanner: false,
-      home: Onboarding(),
+      home: Home(),
     );
   }
 }
