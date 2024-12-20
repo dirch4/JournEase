@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:jurnease/core/constants/color.dart';
+import 'package:jurnease/pages/addjournal.dart';
 
 class Home extends StatelessWidget {
   const Home({super.key});
@@ -74,20 +75,21 @@ class Home extends StatelessWidget {
           const SizedBox(height: 30),
           // button tambah jurnal
           Container(
-            margin: const EdgeInsets.symmetric(
-                horizontal: 20.0), 
-            width: double.infinity, 
+            margin: const EdgeInsets.symmetric(horizontal: 20.0),
+            width: double.infinity,
             child: ElevatedButton.icon(
               onPressed: () {
-                // Aksi ketika tombol ditekan
-                print("Tambah Jurnal ditekan");
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => const Addjournal()),
+                );
               },
               icon: const Icon(
-                Icons.add, 
+                Icons.add,
                 color: Colors.black,
               ),
               label: Text(
-                'Tambah Jurnal',
+                'Ceritain Yuk',
                 style: GoogleFonts.poppins(
                   textStyle: const TextStyle(
                     fontSize: 18.0,
@@ -97,14 +99,12 @@ class Home extends StatelessWidget {
                 ),
               ),
               style: ElevatedButton.styleFrom(
-                backgroundColor: Appcolors.primary, 
-                elevation: 0, 
+                backgroundColor: Appcolors.primary,
+                elevation: 0,
                 shape: RoundedRectangleBorder(
-                  borderRadius:
-                      BorderRadius.circular(50.0), 
+                  borderRadius: BorderRadius.circular(50.0),
                 ),
-                padding: const EdgeInsets.symmetric(
-                    vertical: 20.0), 
+                padding: const EdgeInsets.symmetric(vertical: 20.0),
               ),
             ),
           ),
