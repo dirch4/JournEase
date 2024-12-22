@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:jurnease/core/constants/color.dart';
 import 'package:jurnease/pages/home.dart';
+import 'package:jurnease/pages/loginpage.dart';
 
 class Onboarding extends StatelessWidget {
   const Onboarding({super.key});
@@ -135,7 +136,7 @@ class Onboarding extends StatelessWidget {
             child: OutlinedButton(
               onPressed: () {
                 Navigator.push(context, 
-                MaterialPageRoute(builder: (context) => const Home()),
+                MaterialPageRoute(builder: (context) => const LoginPage()),
                 );
               },
               style: OutlinedButton.styleFrom(
