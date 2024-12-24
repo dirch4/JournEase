@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:jurnease/core/constants/color.dart';
+import 'package:jurnease/core/components/button.dart';
 
 class Addjournal extends StatelessWidget {
   const Addjournal({super.key});
@@ -111,36 +112,22 @@ class Addjournal extends StatelessWidget {
                       ],
                     ),
                   ),
-                  Positioned(
-                    bottom: 40,
-                    left: 80,
-                    child: OutlinedButton(
-                      onPressed: () {
-                        Navigator.pop(context);
-                      },
-                      style: OutlinedButton.styleFrom(
-                        backgroundColor: Appcolors.primary,
-                        side: const BorderSide(color: Colors.black, width: 1),
-                        padding: const EdgeInsets.symmetric(
-                          vertical: 20.0,
-                          horizontal: 110.0,
-                        ),
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(8.0),
-                        ),
-                      ),
-                      child: Text(
-                        "Tambahkan",
-                        style: GoogleFonts.poppins(
-                          textStyle: const TextStyle(
-                            fontSize: 18.0,
-                            fontWeight: FontWeight.bold,
-                            color: Colors.black,
-                          ),
-                        ),
-                      ),
+                  Spacer(),
+                  DynamicButton(
+                    text: "Tambahkan",
+                    backgroundColor: Appcolors.primary,
+                    textColor: Colors.black,
+                    borderRadius: 8.0,
+                    padding: const EdgeInsets.symmetric(
+                      vertical: 20.0,
+                      horizontal: 110.0,
                     ),
+                    borderSide: BorderSide(color: Colors.black, width: 1),
+                    onPressed: () {
+                      Navigator.pop(context);
+                    },
                   ),
+                  const SizedBox(height: 40.0),
                 ],
               ),
             ),

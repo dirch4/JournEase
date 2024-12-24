@@ -3,6 +3,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:jurnease/core/constants/color.dart';
 import 'package:jurnease/pages/home.dart';
 import 'package:jurnease/pages/loginpage.dart';
+import 'package:jurnease/core/components/button.dart';
 
 class Onboarding extends StatelessWidget {
   const Onboarding({super.key});
@@ -133,33 +134,21 @@ class Onboarding extends StatelessWidget {
           Positioned(
             bottom: 40,
             left: 80,
-            child: OutlinedButton(
+            child: DynamicButton(
+              text: "Ayo Mulai!",
+              backgroundColor: Colors.white,
+              textColor: Colors.black,
+              borderSide: BorderSide(color: Colors.black, width: 1),
+              padding: EdgeInsets.symmetric(
+                vertical: 20.0,
+                horizontal: 20.0,
+              ),
+              borderRadius: 8.0,
               onPressed: () {
                 Navigator.push(context, 
-                MaterialPageRoute(builder: (context) => const LoginBoarding()),
+                  MaterialPageRoute(builder: (context) => const LoginBoarding()),
                 );
               },
-              style: OutlinedButton.styleFrom(
-                backgroundColor: Colors.white,
-                side: const BorderSide(color: Colors.black, width: 1), 
-                padding: const EdgeInsets.symmetric(
-                  vertical: 20.0,
-                  horizontal: 20.0,
-                ),
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(8.0), 
-                ),
-              ),
-              child: Text(
-                "Ayo Mulai!",
-                style: GoogleFonts.poppins(
-                  textStyle: const TextStyle(
-                    fontSize: 18.0,
-                    fontWeight: FontWeight.bold,
-                    color: Colors.black, 
-                  ),
-                ),
-              ),
             ),
           ),    
         ],

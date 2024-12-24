@@ -4,6 +4,8 @@ import 'package:jurnease/core/constants/color.dart';
 import 'package:jurnease/pages/addjournal.dart';
 import 'package:jurnease/pages/detail.dart';
 import 'package:jurnease/pages/splashscreen.dart';
+import 'package:jurnease/pages/splashscreen.dart'; 
+import 'package:jurnease/core/components/button.dart';
 
 class Home extends StatelessWidget {
   const Home({super.key});
@@ -32,14 +34,15 @@ class Home extends StatelessWidget {
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
-                  ElevatedButton(
-                    style: ElevatedButton.styleFrom(
-                      backgroundColor: Colors.white, // Gunakan backgroundColor
-                      foregroundColor: Colors.black, // Gunakan foregroundColor
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(20),
-                        side: BorderSide(color: Colors.black),
-                      ),
+                  // Tombol "iya nih"
+                  DynamicButton(
+                    text: "iya nih",
+                    backgroundColor: Colors.white,
+                    textColor: Colors.black,
+                    borderColor: Colors.black,
+                    borderRadius: 20.0,
+                    padding: const EdgeInsets.symmetric(
+                      horizontal: 20, vertical: 10,
                     ),
                     onPressed: () {
                       Navigator.of(context).pushReplacement(
@@ -48,23 +51,20 @@ class Home extends StatelessWidget {
                         ),
                       );
                     },
-                    child: Text('iya nih'),
                   ),
-
                   // Tombol "gajadi deh"
-                  ElevatedButton(
-                    style: ElevatedButton.styleFrom(
-                      backgroundColor: Colors.white, // Gunakan backgroundColor
-                      foregroundColor: Colors.black, // Gunakan foregroundColor
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(20),
-                        side: BorderSide(color: Colors.black),
-                      ),
+                  DynamicButton(
+                    text: "gajadi deh",
+                    backgroundColor: Colors.white,
+                    textColor: Colors.black,
+                    borderColor: Colors.black,
+                    borderRadius: 20.0,
+                    padding: const EdgeInsets.symmetric(
+                      horizontal: 20, vertical: 10,
                     ),
                     onPressed: () {
                       Navigator.of(context).pop();
                     },
-                    child: Text('gajadi deh'),
                   ),
                 ],
               ),
@@ -159,35 +159,20 @@ class Home extends StatelessWidget {
           Container(
             margin: const EdgeInsets.symmetric(horizontal: 20.0),
             width: double.infinity,
-            child: ElevatedButton.icon(
+            child: DynamicButton(
+              text: "Ceritain Yuk",
+              backgroundColor: Appcolors.primary,
+              textColor: Colors.black,
+              borderRadius: 50.0,
+              padding: const EdgeInsets.symmetric(
+                vertical: 20.0,
+              ),
               onPressed: () {
                 Navigator.push(
                   context,
                   MaterialPageRoute(builder: (context) => const Addjournal()),
                 );
               },
-              icon: const Icon(
-                Icons.add,
-                color: Colors.black,
-              ),
-              label: Text(
-                'Ceritain Yuk',
-                style: GoogleFonts.poppins(
-                  textStyle: const TextStyle(
-                    fontSize: 18.0,
-                    fontWeight: FontWeight.bold,
-                    color: Colors.black,
-                  ),
-                ),
-              ),
-              style: ElevatedButton.styleFrom(
-                backgroundColor: Appcolors.primary,
-                elevation: 0,
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(50.0),
-                ),
-                padding: const EdgeInsets.symmetric(vertical: 20.0),
-              ),
             ),
           ),
           const SizedBox(height: 30),
