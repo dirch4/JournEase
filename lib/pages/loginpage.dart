@@ -1,18 +1,18 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:jurnease/core/constants/color.dart';
-import 'login.dart';
+import 'package:jurnease/pages/login.dart';
 import 'signin.dart';
 
-class LoginPage extends StatelessWidget {
-  const LoginPage({super.key});
+class LoginBoarding extends StatelessWidget {
+  const LoginBoarding({super.key});
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: Stack(
+        alignment: Alignment.center,
         children: [
-          // Background image
           Container(
             decoration: BoxDecoration(
               image: DecorationImage(

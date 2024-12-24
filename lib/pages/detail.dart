@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:jurnease/core/constants/color.dart';
 
 class DetailPage extends StatelessWidget {
   final String title;
@@ -20,13 +21,13 @@ class DetailPage extends StatelessWidget {
       body: SingleChildScrollView(
         child: Column(
           children: [
-            // Header dengan ikon
             Stack(
               children: [
+                
                 Container(
                   height: 120,
                   decoration: const BoxDecoration(
-                    color: Colors.white,
+                    color: Appcolors.primary,
                     borderRadius: BorderRadius.only(
                       bottomLeft: Radius.circular(50),
                       bottomRight: Radius.circular(50),

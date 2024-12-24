@@ -136,7 +136,7 @@ class Onboarding extends StatelessWidget {
             child: OutlinedButton(
               onPressed: () {
                 Navigator.push(context, 
-                MaterialPageRoute(builder: (context) => const LoginPage()),
+                MaterialPageRoute(builder: (context) => const LoginBoarding()),
                 );
               },
               style: OutlinedButton.styleFrom(

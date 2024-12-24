@@ -12,9 +12,10 @@ class LoginPage extends StatelessWidget {
     return Scaffold(
       body: Stack(
         children: [
-          // Background image
+
           Container(
             decoration: const BoxDecoration(
+              color: Appcolors.primary,
               image: DecorationImage(
                 image: AssetImage('assets/background.png'),
                 fit: BoxFit.cover,
@@ -95,6 +96,7 @@ class LoginPage extends StatelessWidget {
                       'Masuk',
                       style: GoogleFonts.poppins(
                         textStyle: const TextStyle(
+                          decoration: TextDecoration.none,  
                           fontSize: 18,
                           fontWeight: FontWeight.bold,
                           color: Colors.white,
