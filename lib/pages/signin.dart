@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:jurnease/core/constants/color.dart';
 import 'package:jurnease/pages/home.dart';
 import 'package:jurnease/pages/login.dart';
 import 'package:jurnease/pages/loginpage.dart';
 import 'package:jurnease/core/components/button.dart';
+import 'package:jurnease/core/components/font.dart';
 
 class SignInPage extends StatelessWidget {
   const SignInPage({super.key});
@@ -34,13 +34,7 @@ class SignInPage extends StatelessWidget {
                   // Title
                   Text(
                     'JournEase',
-                    style: GoogleFonts.poppins(
-                      textStyle: const TextStyle(
-                        fontSize: 36,
-                        fontWeight: FontWeight.bold,
-                        color: Colors.black,
-                      ),
-                    ),
+                    style: AppFonts.heading1, // Use dynamic font
                   ),
                   const SizedBox(height: 40),
 
@@ -62,7 +56,8 @@ class SignInPage extends StatelessWidget {
                     backgroundColor: Appcolors.primary,
                     textColor: Colors.white,
                     padding: const EdgeInsets.symmetric(
-                      horizontal: 50, vertical: 15,
+                      horizontal: 50,
+                      vertical: 15,
                     ),
                     borderRadius: 30.0,
                     onPressed: () {
@@ -77,9 +72,7 @@ class SignInPage extends StatelessWidget {
                   // Already Have Account Text
                   Text(
                     'Sudah memiliki akun JournEase?',
-                    style: GoogleFonts.poppins(
-                      textStyle: const TextStyle(color: Colors.black),
-                    ),
+                    style: AppFonts.bodyText, // Use dynamic font
                   ),
 
                   // Login Prompt
@@ -87,18 +80,17 @@ class SignInPage extends StatelessWidget {
                     onTap: () {
                       Navigator.push(
                         context,
-                        MaterialPageRoute(builder: (context) => const LoginPage()),
+                        MaterialPageRoute(
+                            builder: (context) => const LoginPage()),
                       );
                     },
                     child: Text(
                       'Masuk',
-                      style: GoogleFonts.poppins(
-                        textStyle: const TextStyle(
-                          color: Appcolors.primary,
-                          fontWeight: FontWeight.bold,
-                          decoration: TextDecoration.underline,
-                        ),
-                      ),
+                      style: AppFonts.bodyText.copyWith(
+                        color: Appcolors.primary,
+                        fontWeight: FontWeight.bold,
+                        decoration: TextDecoration.underline,
+                      ), // Use dynamic font
                     ),
                   ),
                 ],
@@ -116,9 +108,8 @@ class SignInPage extends StatelessWidget {
       obscureText: isPassword,
       decoration: InputDecoration(
         labelText: labelText,
-        labelStyle: GoogleFonts.poppins(
-          textStyle: const TextStyle(color: Colors.black54),
-        ),
+        labelStyle: AppFonts.bodyText
+            .copyWith(color: Colors.black54), // Use dynamic font
         filled: true,
         fillColor: Colors.white,
         border: OutlineInputBorder(

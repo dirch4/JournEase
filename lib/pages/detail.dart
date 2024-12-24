@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:jurnease/core/constants/color.dart';
 import 'package:jurnease/core/components/button.dart';
-
+import 'package:jurnease/core/components/font.dart';
 
 class DetailPage extends StatelessWidget {
   final String title;
@@ -25,7 +24,6 @@ class DetailPage extends StatelessWidget {
           children: [
             Stack(
               children: [
-                
                 Container(
                   height: 120,
                   decoration: const BoxDecoration(
@@ -40,21 +38,20 @@ class DetailPage extends StatelessWidget {
                   top: 40,
                   left: 16,
                   child: DynamicButton(
-                        text: "", // Teks kosong karena hanya ingin ikon
-                        backgroundColor: Colors.pink[100]!,
-                        textColor: Colors.black,
-                        borderRadius: 50.0,
-                        padding: const EdgeInsets.all(8),
-                        onPressed: () {
-                          Navigator.pop(context);
-                        },
-                        // Tambahkan ikon di dalam tombol
-                        icon: const Icon(
-                          Icons.arrow_back,
-                          color: Colors.black,
-                        ),
-                      ),
-
+                    text: "", // Teks kosong karena hanya ingin ikon
+                    backgroundColor: Colors.pink[100]!,
+                    textColor: Colors.black,
+                    borderRadius: 50.0,
+                    padding: const EdgeInsets.all(8),
+                    onPressed: () {
+                      Navigator.pop(context);
+                    },
+                    // Tambahkan ikon di dalam tombol
+                    icon: const Icon(
+                      Icons.arrow_back,
+                      color: Colors.black,
+                    ),
+                  ),
                 ),
                 Positioned(
                   top: 10,
@@ -82,33 +79,18 @@ class DetailPage extends StatelessWidget {
                   children: [
                     Text(
                       title,
-                      style: GoogleFonts.poppins(
-                        textStyle: const TextStyle(
-                          fontSize: 24,
-                          fontWeight: FontWeight.bold,
-                          color: Colors.black,
-                        ),
-                      ),
+                      style: AppFonts.heading1, // Use dynamic font
                     ),
                     const SizedBox(height: 8),
                     Text(
                       date,
-                      style: GoogleFonts.poppins(
-                        textStyle: const TextStyle(
-                          fontSize: 14,
-                          color: Colors.grey,
-                        ),
-                      ),
+                      style: AppFonts.bodyText
+                          .copyWith(color: Colors.grey), // Use dynamic font
                     ),
                     const SizedBox(height: 16),
                     Text(
                       content,
-                      style: GoogleFonts.poppins(
-                        textStyle: const TextStyle(
-                          fontSize: 16,
-                          color: Colors.black,
-                        ),
-                      ),
+                      style: AppFonts.bodyText, // Use dynamic font
                     ),
                   ],
                 ),
@@ -121,13 +103,7 @@ class DetailPage extends StatelessWidget {
               child: Text(
                 'JournEase',
                 textAlign: TextAlign.center,
-                style: GoogleFonts.poppins(
-                  textStyle: const TextStyle(
-                    fontSize: 20,
-                    fontWeight: FontWeight.bold,
-                    color: Colors.black,
-                  ),
-                ),
+                style: AppFonts.heading2, // Use dynamic font
               ),
             ),
             const SizedBox(height: 20),

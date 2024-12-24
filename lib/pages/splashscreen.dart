@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:jurnease/core/constants/color.dart';
 import 'package:jurnease/pages/onboarding.dart';
+import 'package:jurnease/core/components/font.dart';
 
 class Splashscreen extends StatefulWidget {
   const Splashscreen({super.key});
@@ -16,11 +16,7 @@ class _SplashscreenState extends State<Splashscreen> {
     Future.delayed(
       const Duration(seconds: 6),
       () => Navigator.pushReplacement(
-          context, 
-          MaterialPageRoute(
-            builder: (context) => Onboarding()
-          )
-        ),
+          context, MaterialPageRoute(builder: (context) => const Onboarding())),
     );
     return Scaffold(
       body: Stack(
@@ -30,9 +26,7 @@ class _SplashscreenState extends State<Splashscreen> {
             child: Center(
               child: Text(
                 "JournEase",
-                style: GoogleFonts.poppins(
-                    textStyle:
-                        TextStyle(fontSize: 30.0, fontWeight: FontWeight.bold)),
+                style: AppFonts.heading1, // Use dynamic font
               ),
             ),
           ),

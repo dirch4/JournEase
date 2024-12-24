@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:jurnease/core/constants/color.dart';
 import 'package:jurnease/core/components/button.dart';
+import 'package:jurnease/core/components/font.dart';
 
 class Addjournal extends StatelessWidget {
   const Addjournal({super.key});
@@ -12,7 +12,7 @@ class Addjournal extends StatelessWidget {
       extendBodyBehindAppBar: true,
       appBar: AppBar(
         backgroundColor: Colors.transparent,
-        elevation: 0, 
+        elevation: 0,
         leading: GestureDetector(
           onTap: () {
             Navigator.pop(context);
@@ -67,7 +67,7 @@ class Addjournal extends StatelessWidget {
               width: 400,
               decoration: BoxDecoration(
                   color: Appcolors.secondary,
-                  borderRadius: BorderRadius.all(Radius.circular(20.0))),
+                  borderRadius: const BorderRadius.all(Radius.circular(20.0))),
               child: Column(
                 children: [
                   const SizedBox(
@@ -75,44 +75,46 @@ class Addjournal extends StatelessWidget {
                   ),
                   Text(
                     "Tambah Jurnal",
-                    style: GoogleFonts.poppins(
-                      textStyle: const TextStyle(
-                        fontSize: 18.0,
-                        fontWeight: FontWeight.bold,
-                        color: Colors.black,
-                      ),
-                    ),
+                    style: AppFonts.heading2, // Use dynamic font
                   ),
                   Padding(
                     padding: const EdgeInsets.all(30.0),
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        Text("Judul : "),
+                        Text(
+                          "Judul : ",
+                          style: AppFonts.bodyText, // Use dynamic font
+                        ),
                         TextField(
                           decoration: InputDecoration(
                             filled: true,
                             fillColor: Colors.white,
-                            border: OutlineInputBorder(),
+                            border: const OutlineInputBorder(),
                             hintText: 'Masukkan judul',
+                            hintStyle: AppFonts.bodyText, // Use dynamic font
                           ),
                         ),
                         const SizedBox(height: 10.0),
-                        Text("Ceritakan Harimu : "),
+                        Text(
+                          "Ceritakan Harimu : ",
+                          style: AppFonts.bodyText, // Use dynamic font
+                        ),
                         const SizedBox(height: 5.0),
                         TextField(
                           maxLines: 7,
                           decoration: InputDecoration(
                             filled: true,
                             fillColor: Colors.white,
-                            border: OutlineInputBorder(),
+                            border: const OutlineInputBorder(),
                             hintText: 'Ceritakan pengalaman hari ini',
+                            hintStyle: AppFonts.bodyText, // Use dynamic font
                           ),
                         ),
                       ],
                     ),
                   ),
-                  Spacer(),
+                  const Spacer(),
                   DynamicButton(
                     text: "Tambahkan",
                     backgroundColor: Appcolors.primary,
@@ -122,7 +124,7 @@ class Addjournal extends StatelessWidget {
                       vertical: 20.0,
                       horizontal: 110.0,
                     ),
-                    borderSide: BorderSide(color: Colors.black, width: 1),
+                    borderSide: const BorderSide(color: Colors.black, width: 1),
                     onPressed: () {
                       Navigator.pop(context);
                     },

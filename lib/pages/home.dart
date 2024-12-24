@@ -4,8 +4,8 @@ import 'package:jurnease/core/constants/color.dart';
 import 'package:jurnease/pages/addjournal.dart';
 import 'package:jurnease/pages/detail.dart';
 import 'package:jurnease/pages/splashscreen.dart';
-import 'package:jurnease/pages/splashscreen.dart'; 
 import 'package:jurnease/core/components/button.dart';
+import 'package:jurnease/core/components/font.dart';
 
 class Home extends StatelessWidget {
   const Home({super.key});
@@ -25,10 +25,7 @@ class Home extends StatelessWidget {
             children: [
               Text(
                 'Yakin Mau Off?',
-                style: TextStyle(
-                  fontSize: 24,
-                  fontWeight: FontWeight.bold,
-                ),
+                style: AppFonts.heading1,
               ),
               SizedBox(height: 20),
               Row(
@@ -42,7 +39,8 @@ class Home extends StatelessWidget {
                     borderColor: Colors.black,
                     borderRadius: 20.0,
                     padding: const EdgeInsets.symmetric(
-                      horizontal: 20, vertical: 10,
+                      horizontal: 20,
+                      vertical: 10,
                     ),
                     onPressed: () {
                       Navigator.of(context).pushReplacement(
@@ -60,7 +58,8 @@ class Home extends StatelessWidget {
                     borderColor: Colors.black,
                     borderRadius: 20.0,
                     padding: const EdgeInsets.symmetric(
-                      horizontal: 20, vertical: 10,
+                      horizontal: 20,
+                      vertical: 10,
                     ),
                     onPressed: () {
                       Navigator.of(context).pop();
@@ -102,13 +101,7 @@ class Home extends StatelessWidget {
                       child: Text(
                         "Selamat Datang!",
                         textAlign: TextAlign.start,
-                        style: GoogleFonts.poppins(
-                          textStyle: const TextStyle(
-                            fontSize: 30.0,
-                            fontWeight: FontWeight.bold,
-                            color: Colors.black,
-                          ),
-                        ),
+                        style: AppFonts.heading1,
                       ),
                     ),
                     Padding(
@@ -116,13 +109,7 @@ class Home extends StatelessWidget {
                       child: Text(
                         "Apa niat kamu untuk hari ini?",
                         textAlign: TextAlign.start,
-                        style: GoogleFonts.poppins(
-                          textStyle: const TextStyle(
-                            fontSize: 20.0,
-                            fontWeight: FontWeight.normal,
-                            color: Colors.black,
-                          ),
-                        ),
+                        style: AppFonts.heading2,
                       ),
                     ),
                   ],
@@ -183,13 +170,7 @@ class Home extends StatelessWidget {
                 margin: const EdgeInsets.only(left: 20.0),
                 child: Text(
                   "Journaling Kamu",
-                  style: GoogleFonts.poppins(
-                    textStyle: const TextStyle(
-                      fontSize: 20.0,
-                      fontWeight: FontWeight.bold,
-                      color: Colors.black,
-                    ),
-                  ),
+                  style: AppFonts.heading2,
                 ),
               ),
             ],
@@ -207,7 +188,8 @@ class Home extends StatelessWidget {
                         builder: (context) => DetailPage(
                           title: "Hari",
                           date: "17 Desember 2024",
-                          content: "Hari ini adalah hari yang paling membahagiakan dalam hidupku. Pagi dimulai dengan kejutan kecil dari sahabatku yang datang membawa kue favoritku, lengkap dengan ucapan penuh kehangatan. Kami menghabiskan hari dengan tawa, mengenang momen-momen indah, dan berbagi cerita tanpa henti.Saat matahari terbenam, kami berkumpul di tepi pantai, menyaksikan langit berubah warna dan merasa begitu damai. ",
+                          content:
+                              "Hari ini adalah hari yang paling membahagiakan dalam hidupku. Pagi dimulai dengan kejutan kecil dari sahabatku yang datang membawa kue favoritku, lengkap dengan ucapan penuh kehangatan. Kami menghabiskan hari dengan tawa, mengenang momen-momen indah, dan berbagi cerita tanpa henti.Saat matahari terbenam, kami berkumpul di tepi pantai, menyaksikan langit berubah warna dan merasa begitu damai. ",
                         ),
                       ),
                     );
