@@ -3,6 +3,7 @@ import 'package:jurnease/core/constants/color.dart';
 import 'package:jurnease/core/components/button.dart';
 import 'package:jurnease/core/components/font.dart';
 import 'package:jurnease/core/components/icon.dart';
+import 'package:jurnease/core/components/textfield.dart';
 
 class Addjournal extends StatelessWidget {
   const Addjournal({super.key});
@@ -79,14 +80,8 @@ class Addjournal extends StatelessWidget {
                           "Judul : ",
                           style: AppFonts.bodyText, // Font dinamis
                         ),
-                        TextField(
-                          decoration: InputDecoration(
-                            filled: true,
-                            fillColor: Colors.white,
-                            border: const OutlineInputBorder(),
-                            hintText: 'Masukkan judul',
-                            hintStyle: AppFonts.bodyText, // Font dinamis
-                          ),
+                        const DynamicTextField(
+                          hintText: 'Masukkan judul',
                         ),
                         const SizedBox(height: 10.0),
                         Text(
@@ -94,15 +89,9 @@ class Addjournal extends StatelessWidget {
                           style: AppFonts.bodyText, // Font dinamis
                         ),
                         const SizedBox(height: 5.0),
-                        TextField(
+                        const DynamicTextField(
+                          hintText: 'Ceritakan pengalaman hari ini',
                           maxLines: 7,
-                          decoration: InputDecoration(
-                            filled: true,
-                            fillColor: Colors.white,
-                            border: const OutlineInputBorder(),
-                            hintText: 'Ceritakan pengalaman hari ini',
-                            hintStyle: AppFonts.bodyText, // Font dinamis
-                          ),
                         ),
                       ],
                     ),

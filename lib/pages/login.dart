@@ -4,6 +4,7 @@ import 'package:jurnease/pages/home.dart';
 import 'package:jurnease/pages/signin.dart';
 import 'package:jurnease/core/components/button.dart';
 import 'package:jurnease/core/components/font.dart';
+import 'package:jurnease/core/components/textfield.dart';
 
 class LoginPage extends StatelessWidget {
   const LoginPage({super.key});
@@ -38,11 +39,16 @@ class LoginPage extends StatelessWidget {
                   const SizedBox(height: 40),
 
                   // Username Input
-                  _buildTextField('Username', false),
+                  const DynamicTextField(
+                    hintText: 'Username',
+                  ),
                   const SizedBox(height: 20),
 
                   // Password Input
-                  _buildTextField('Password', true),
+                  const DynamicTextField(
+                    hintText: 'Password',
+                    obscureText: true,
+                  ),
                   const SizedBox(height: 20),
 
                   // Login Button
@@ -92,23 +98,6 @@ class LoginPage extends StatelessWidget {
             ),
           ),
         ],
-      ),
-    );
-  }
-
-  // Reusable TextField Builder
-  Widget _buildTextField(String labelText, bool isPassword) {
-    return TextField(
-      obscureText: isPassword,
-      decoration: InputDecoration(
-        labelText: labelText,
-        labelStyle: AppFonts.bodyText
-            .copyWith(color: Colors.black54), // Use dynamic font
-        filled: true,
-        fillColor: Colors.white,
-        border: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(30.0),
-        ),
       ),
     );
   }
