@@ -53,7 +53,7 @@ class LoginPage extends StatelessWidget {
                   const SizedBox(height: 20),
 
                   // Login Button
-                  DynamicButton(
+                                    DynamicButton(
                     text: "Masuk",
                     backgroundColor: Appcolors.primary,
                     textColor: Colors.white,
@@ -67,28 +67,8 @@ class LoginPage extends StatelessWidget {
                         MaterialPageRoute(builder: (context) => const Home()),
                       );
                     },
-
-                    style: ElevatedButton.styleFrom(
-                      backgroundColor: Appcolors.primary,
-                      padding: const EdgeInsets.symmetric(
-                          horizontal: 50, vertical: 15),
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(30.0),
-                      ),
-                    ),
-                    child: Text(
-                      'Masuk',
-                      style: GoogleFonts.poppins(
-                        textStyle: const TextStyle(
-                          decoration: TextDecoration.none,  
-                          fontSize: 18,
-                          fontWeight: FontWeight.bold,
-                          color: Colors.white,
-                        ),
-                      ),
-                    ),
-
                   ),
+
                   const SizedBox(height: 20),
 
                   // Sign Up Prompt
