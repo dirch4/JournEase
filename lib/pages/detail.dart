@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:jurnease/core/constants/color.dart';
-import 'package:jurnease/core/components/button.dart';
 import 'package:jurnease/core/components/font.dart';
+import 'package:jurnease/core/components/icon.dart'; 
 
 class DetailPage extends StatelessWidget {
   final String title;
@@ -37,20 +37,13 @@ class DetailPage extends StatelessWidget {
                 Positioned(
                   top: 40,
                   left: 16,
-                  child: DynamicButton(
-                    text: "", // Teks kosong karena hanya ingin ikon
-                    backgroundColor: Colors.pink[100]!,
-                    textColor: Colors.black,
-                    borderRadius: 50.0,
-                    padding: const EdgeInsets.all(8),
+                  child: AppIcon(
+                    icon: Icons.arrow_back, // Ikon back
+                    color: Colors.black,
+                    size: 30,
                     onPressed: () {
-                      Navigator.pop(context);
+                      Navigator.pop(context); // Aksi kembali
                     },
-                    // Tambahkan ikon di dalam tombol
-                    icon: const Icon(
-                      Icons.arrow_back,
-                      color: Colors.black,
-                    ),
                   ),
                 ),
                 Positioned(
@@ -79,18 +72,18 @@ class DetailPage extends StatelessWidget {
                   children: [
                     Text(
                       title,
-                      style: AppFonts.heading1, // Use dynamic font
+                      style: AppFonts.heading1, // Font dinamis
                     ),
                     const SizedBox(height: 8),
                     Text(
                       date,
                       style: AppFonts.bodyText
-                          .copyWith(color: Colors.grey), // Use dynamic font
+                          .copyWith(color: Colors.grey), // Font dinamis
                     ),
                     const SizedBox(height: 16),
                     Text(
                       content,
-                      style: AppFonts.bodyText, // Use dynamic font
+                      style: AppFonts.bodyText, // Font dinamis
                     ),
                   ],
                 ),
@@ -103,7 +96,7 @@ class DetailPage extends StatelessWidget {
               child: Text(
                 'JournEase',
                 textAlign: TextAlign.center,
-                style: AppFonts.heading2, // Use dynamic font
+                style: AppFonts.heading2, // Font dinamis
               ),
             ),
             const SizedBox(height: 20),

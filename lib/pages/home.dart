@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:jurnease/core/constants/color.dart';
 import 'package:jurnease/pages/addjournal.dart';
 import 'package:jurnease/pages/detail.dart';
 import 'package:jurnease/pages/splashscreen.dart';
 import 'package:jurnease/core/components/button.dart';
 import 'package:jurnease/core/components/font.dart';
+import 'package:jurnease/core/components/icon.dart';
 
 class Home extends StatelessWidget {
   const Home({super.key});
@@ -126,13 +126,14 @@ class Home extends StatelessWidget {
                     ),
                   ),
                 ),
-                // Tombol "Off" di kanan atas
+                // Tombol "Off" di kanan atas menggunakan AppIcon
                 Positioned(
                   top: 40,
                   right: 20,
-                  child: IconButton(
-                    icon: const Icon(Icons.power_settings_new),
+                  child: AppIcon(
+                    icon: Icons.power_settings_new,
                     color: Colors.black,
+                    size: 30,
                     onPressed: () {
                       showOffAlert(context);
                     },
@@ -172,6 +173,18 @@ class Home extends StatelessWidget {
                   "Journaling Kamu",
                   style: AppFonts.heading2,
                 ),
+              ),
+              // Ikon "+" untuk menambah jurnal
+              AppIcon(
+                icon: Icons.add,
+                color: Colors.black,
+                size: 30,
+                onPressed: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => const Addjournal()),
+                  );
+                },
               ),
             ],
           ),

@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:jurnease/core/constants/color.dart';
 import 'package:jurnease/core/components/button.dart';
 import 'package:jurnease/core/components/font.dart';
+import 'package:jurnease/core/components/icon.dart';
 
 class Addjournal extends StatelessWidget {
   const Addjournal({super.key});
@@ -13,22 +14,13 @@ class Addjournal extends StatelessWidget {
       appBar: AppBar(
         backgroundColor: Colors.transparent,
         elevation: 0,
-        leading: GestureDetector(
-          onTap: () {
-            Navigator.pop(context);
+        leading: AppIcon(
+          icon: Icons.arrow_back, // Ikon back
+          color: Colors.black,
+          size: 24,
+          onPressed: () {
+            Navigator.pop(context); // Aksi kembali
           },
-          child: Container(
-            margin: const EdgeInsets.all(8),
-            padding: const EdgeInsets.all(8),
-            decoration: BoxDecoration(
-              color: Colors.pink[100],
-              shape: BoxShape.circle,
-            ),
-            child: const Icon(
-              Icons.arrow_back,
-              color: Colors.black,
-            ),
-          ),
         ),
       ),
       body: Stack(
@@ -66,8 +58,9 @@ class Addjournal extends StatelessWidget {
               height: 500,
               width: 400,
               decoration: BoxDecoration(
-                  color: Appcolors.secondary,
-                  borderRadius: const BorderRadius.all(Radius.circular(20.0))),
+                color: Appcolors.secondary,
+                borderRadius: const BorderRadius.all(Radius.circular(20.0)),
+              ),
               child: Column(
                 children: [
                   const SizedBox(
@@ -75,7 +68,7 @@ class Addjournal extends StatelessWidget {
                   ),
                   Text(
                     "Tambah Jurnal",
-                    style: AppFonts.heading2, // Use dynamic font
+                    style: AppFonts.heading2, // Font dinamis
                   ),
                   Padding(
                     padding: const EdgeInsets.all(30.0),
@@ -84,7 +77,7 @@ class Addjournal extends StatelessWidget {
                       children: [
                         Text(
                           "Judul : ",
-                          style: AppFonts.bodyText, // Use dynamic font
+                          style: AppFonts.bodyText, // Font dinamis
                         ),
                         TextField(
                           decoration: InputDecoration(
@@ -92,13 +85,13 @@ class Addjournal extends StatelessWidget {
                             fillColor: Colors.white,
                             border: const OutlineInputBorder(),
                             hintText: 'Masukkan judul',
-                            hintStyle: AppFonts.bodyText, // Use dynamic font
+                            hintStyle: AppFonts.bodyText, // Font dinamis
                           ),
                         ),
                         const SizedBox(height: 10.0),
                         Text(
                           "Ceritakan Harimu : ",
-                          style: AppFonts.bodyText, // Use dynamic font
+                          style: AppFonts.bodyText, // Font dinamis
                         ),
                         const SizedBox(height: 5.0),
                         TextField(
@@ -108,7 +101,7 @@ class Addjournal extends StatelessWidget {
                             fillColor: Colors.white,
                             border: const OutlineInputBorder(),
                             hintText: 'Ceritakan pengalaman hari ini',
-                            hintStyle: AppFonts.bodyText, // Use dynamic font
+                            hintStyle: AppFonts.bodyText, // Font dinamis
                           ),
                         ),
                       ],
@@ -126,7 +119,7 @@ class Addjournal extends StatelessWidget {
                     ),
                     borderSide: const BorderSide(color: Colors.black, width: 1),
                     onPressed: () {
-                      Navigator.pop(context);
+                      Navigator.pop(context); // Tambahkan logika lain jika diperlukan
                     },
                   ),
                   const SizedBox(height: 40.0),

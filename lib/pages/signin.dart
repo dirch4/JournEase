@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:jurnease/core/constants/color.dart';
 import 'package:jurnease/pages/home.dart';
 import 'package:jurnease/pages/login.dart';
-import 'package:jurnease/pages/loginpage.dart';
 import 'package:jurnease/core/components/button.dart';
 import 'package:jurnease/core/components/font.dart';
 
