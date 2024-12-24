@@ -3,3 +3,10 @@ JournEase adalah aplikasi jurnaling yang menggabungkan kemudahan dan kenyamanan 
 -------------------------------------------------
 
 JournEase is a journaling application that combines ease and comfort in recording every moment. With a name that comes from the words "Journ" (journal) and "Ease" (ease), JournEase is designed to help users write journals easily, practically and fun. This app makes it easy for you to record feelings, experiences, and ideas, anytime and anywhere.
+
+-------------------------------------------------
+
+Authors :
+1. @dirch4 Back-End & Project Manager
+2. @falle46 Front-End Dev & Designer
+3. @Axel-44 Front-End Dev & Designer
