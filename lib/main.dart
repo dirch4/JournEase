@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:jurnease/pages/home.dart';
-import 'package:jurnease/pages/onboarding.dart';
 import 'package:jurnease/pages/splashscreen.dart';
 
 void main() {

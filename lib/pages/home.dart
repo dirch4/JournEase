@@ -3,6 +3,7 @@ import 'package:jurnease/core/constants/color.dart';
 import 'package:jurnease/pages/addjournal.dart';
 import 'package:jurnease/pages/detail.dart';
 import 'package:jurnease/pages/splashscreen.dart';
+import 'package:jurnease/pages/author.dart'; // Halaman Author
 import 'package:jurnease/core/components/button.dart';
 import 'package:jurnease/core/components/font.dart';
 import 'package:jurnease/core/components/icon.dart';
@@ -10,7 +11,6 @@ import 'package:jurnease/core/components/icon.dart';
 class Home extends StatelessWidget {
   const Home({super.key});
 
-  // Fungsi untuk menampilkan dialog "Off"
   void showOffAlert(BuildContext context) {
     showDialog(
       context: context,
@@ -31,7 +31,6 @@ class Home extends StatelessWidget {
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
-                  // Tombol "iya nih"
                   DynamicButton(
                     text: "iya nih",
                     backgroundColor: Colors.white,
@@ -50,7 +49,6 @@ class Home extends StatelessWidget {
                       );
                     },
                   ),
-                  // Tombol "gajadi deh"
                   DynamicButton(
                     text: "gajadi deh",
                     backgroundColor: Colors.white,
@@ -80,7 +78,7 @@ class Home extends StatelessWidget {
       body: Column(
         children: [
           Container(
-            height: 200.0,
+            height: 220.0,
             width: double.infinity,
             decoration: BoxDecoration(
               color: Appcolors.secondary,
@@ -96,16 +94,18 @@ class Home extends StatelessWidget {
                   mainAxisSize: MainAxisSize.min,
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
+                    const SizedBox(height: 80), // Naikkan ikon sedikit
                     Padding(
-                      padding: const EdgeInsets.only(left: 20, top: 40),
+                      padding: const EdgeInsets.only(left: 20),
                       child: Text(
                         "Selamat Datang!",
                         textAlign: TextAlign.start,
                         style: AppFonts.heading1,
                       ),
                     ),
+                    const SizedBox(height: 5),
                     Padding(
-                      padding: const EdgeInsets.only(left: 20, top: 5),
+                      padding: const EdgeInsets.only(left: 20),
                       child: Text(
                         "Apa niat kamu untuk hari ini?",
                         textAlign: TextAlign.start,
@@ -126,24 +126,42 @@ class Home extends StatelessWidget {
                     ),
                   ),
                 ),
-                // Tombol "Off" di kanan atas menggunakan AppIcon
+                // Baris ikon "i" dan "Off" sejajar
                 Positioned(
                   top: 40,
-                  right: 20,
-                  child: AppIcon(
-                    icon: Icons.power_settings_new,
-                    color: Colors.black,
-                    size: 30,
-                    onPressed: () {
-                      showOffAlert(context);
-                    },
+                  left: 20,
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      AppIcon(
+                        icon: Icons.info_outline,
+                        color: Colors.black,
+                        size: 30,
+                        onPressed: () {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => const AuthorPage(),
+                            ),
+                          );
+                        },
+                      ),
+                      const SizedBox(width: 350), // Menjaga jarak antar ikon
+                      AppIcon(
+                        icon: Icons.power_settings_new,
+                        color: Colors.black,
+                        size: 30,
+                        onPressed: () {
+                          showOffAlert(context);
+                        },
+                      ),
+                    ],
                   ),
                 ),
               ],
             ),
           ),
           const SizedBox(height: 30),
-          // Button tambah jurnal
           Container(
             margin: const EdgeInsets.symmetric(horizontal: 20.0),
             width: double.infinity,
@@ -174,7 +192,6 @@ class Home extends StatelessWidget {
                   style: AppFonts.heading2,
                 ),
               ),
-              // Ikon "+" untuk menambah jurnal
               AppIcon(
                 icon: Icons.add,
                 color: Colors.black,
@@ -202,7 +219,7 @@ class Home extends StatelessWidget {
                           title: "Hari",
                           date: "17 Desember 2024",
                           content:
-                              "Hari ini adalah hari yang paling membahagiakan dalam hidupku. Pagi dimulai dengan kejutan kecil dari sahabatku yang datang membawa kue favoritku, lengkap dengan ucapan penuh kehangatan. Kami menghabiskan hari dengan tawa, mengenang momen-momen indah, dan berbagi cerita tanpa henti.Saat matahari terbenam, kami berkumpul di tepi pantai, menyaksikan langit berubah warna dan merasa begitu damai. ",
+                              "Hari ini adalah hari yang paling membahagiakan dalam hidupku. Pagi dimulai dengan kejutan kecil dari sahabatku yang datang membawa kue favoritku, lengkap dengan ucapan penuh kehangatan. Kami menghabiskan hari dengan tawa, mengenang momen-momen indah, dan berbagi cerita tanpa henti. Saat matahari terbenam, kami berkumpul di tepi pantai, menyaksikan langit berubah warna dan merasa begitu damai.",
                         ),
                       ),
                     );
