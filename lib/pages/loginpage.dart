@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:jurnease/core/constants/color.dart';
+import 'package:jurnease/core/components/button.dart';
 import 'login.dart';
 import 'signin.dart';
 
@@ -58,30 +59,16 @@ class LoginPage extends StatelessWidget {
                 SizedBox(height: 30),
 
                 // Sign Up Button
-                ElevatedButton(
+                DynamicButton(
+                  text: 'Daftar',
+                  backgroundColor: Appcolors.primary,
+                  textColor: Colors.white,
                   onPressed: () {
                     Navigator.push(
                       context,
                       MaterialPageRoute(builder: (context) => SignInPage()),
                     );
                   },
-                  style: ElevatedButton.styleFrom(
-                    backgroundColor: Appcolors.primary,
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(30),
-                    ),
-                    padding: EdgeInsets.symmetric(horizontal: 40, vertical: 15),
-                  ),
-                  child: Text(
-                    'Daftar',
-                    style: GoogleFonts.poppins(
-                      textStyle: TextStyle(
-                        fontSize: 18,
-                        fontWeight: FontWeight.bold,
-                        color: Colors.white,
-                      ),
-                    ),
-                  ),
                 ),
                 SizedBox(height: 20),
 
@@ -98,31 +85,17 @@ class LoginPage extends StatelessWidget {
                 SizedBox(height: 10),
 
                 // Login Button
-                ElevatedButton(
+                DynamicButton(
+                  text: 'Masuk',
+                  backgroundColor: Colors.white,
+                  textColor: Appcolors.primary,
+                  borderSide: BorderSide(color: Appcolors.primary),
                   onPressed: () {
                     Navigator.push(
                       context,
                       MaterialPageRoute(builder: (context) => LoginPage()),
                     );
                   },
-                  style: ElevatedButton.styleFrom(
-                    backgroundColor: Colors.white,
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(30),
-                    ),
-                    side: BorderSide(color: Appcolors.primary),
-                    padding: EdgeInsets.symmetric(horizontal: 40, vertical: 15),
-                  ),
-                  child: Text(
-                    'Masuk',
-                    style: GoogleFonts.poppins(
-                      textStyle: TextStyle(
-                        fontSize: 18,
-                        fontWeight: FontWeight.bold,
-                        color: Appcolors.primary,
-                      ),
-                    ),
-                  ),
                 ),
               ],
             ),

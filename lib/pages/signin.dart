@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:jurnease/core/constants/color.dart';
-import 'home.dart';
-import 'login.dart';
+import 'package:jurnease/pages/home.dart';
+import 'package:jurnease/pages/loginpage.dart';
+import 'package:jurnease/core/components/button.dart';
 
 class SignInPage extends StatelessWidget {
   const SignInPage({super.key});
@@ -55,31 +56,20 @@ class SignInPage extends StatelessWidget {
                   const SizedBox(height: 30),
 
                   // Register Button
-                  ElevatedButton(
+                  DynamicButton(
+                    text: "Daftar",
+                    backgroundColor: Appcolors.primary,
+                    textColor: Colors.white,
+                    padding: const EdgeInsets.symmetric(
+                      horizontal: 50, vertical: 15,
+                    ),
+                    borderRadius: 30.0,
                     onPressed: () {
                       Navigator.push(
                         context,
                         MaterialPageRoute(builder: (context) => const Home()),
                       );
                     },
-                    style: ElevatedButton.styleFrom(
-                      backgroundColor: Appcolors.primary,
-                      padding: const EdgeInsets.symmetric(
-                          horizontal: 50, vertical: 15),
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(30.0),
-                      ),
-                    ),
-                    child: Text(
-                      'Daftar',
-                      style: GoogleFonts.poppins(
-                        textStyle: const TextStyle(
-                          fontSize: 18,
-                          fontWeight: FontWeight.bold,
-                          color: Colors.white,
-                        ),
-                      ),
-                    ),
                   ),
                   const SizedBox(height: 20),
 

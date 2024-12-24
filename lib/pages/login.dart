@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:jurnease/core/constants/color.dart';
-import 'home.dart';
-import 'signin.dart';
+import 'package:jurnease/pages/home.dart';
+import 'package:jurnease/pages/signin.dart';
+import 'package:jurnease/core/components/button.dart';
 
 class LoginPage extends StatelessWidget {
   const LoginPage({super.key});
@@ -43,64 +44,28 @@ class LoginPage extends StatelessWidget {
                   const SizedBox(height: 40),
 
                   // Username Input
-                  TextField(
-                    decoration: InputDecoration(
-                      labelText: 'Username',
-                      labelStyle: GoogleFonts.poppins(
-                        textStyle: const TextStyle(color: Colors.black54),
-                      ),
-                      border: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(30.0),
-                      ),
-                      filled: true,
-                      fillColor: Colors.white,
-                    ),
-                  ),
+                  _buildTextField('Username', false),
                   const SizedBox(height: 20),
 
                   // Password Input
-                  TextField(
-                    obscureText: true,
-                    decoration: InputDecoration(
-                      labelText: 'Password',
-                      labelStyle: GoogleFonts.poppins(
-                        textStyle: const TextStyle(color: Colors.black54),
-                      ),
-                      border: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(30.0),
-                      ),
-                      filled: true,
-                      fillColor: Colors.white,
-                    ),
-                  ),
+                  _buildTextField('Password', true),
                   const SizedBox(height: 20),
 
                   // Login Button
-                  ElevatedButton(
+                  DynamicButton(
+                    text: "Masuk",
+                    backgroundColor: Appcolors.primary,
+                    textColor: Colors.white,
+                    padding: const EdgeInsets.symmetric(
+                      horizontal: 50, vertical: 15,
+                    ),
+                    borderRadius: 30.0,
                     onPressed: () {
                       Navigator.push(
                         context,
                         MaterialPageRoute(builder: (context) => const Home()),
                       );
                     },
-                    style: ElevatedButton.styleFrom(
-                      backgroundColor: Appcolors.primary,
-                      padding: const EdgeInsets.symmetric(
-                          horizontal: 50, vertical: 15),
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(30.0),
-                      ),
-                    ),
-                    child: Text(
-                      'Masuk',
-                      style: GoogleFonts.poppins(
-                        textStyle: const TextStyle(
-                          fontSize: 18,
-                          fontWeight: FontWeight.bold,
-                          color: Colors.white,
-                        ),
-                      ),
-                    ),
                   ),
                   const SizedBox(height: 20),
 
@@ -133,6 +98,24 @@ class LoginPage extends StatelessWidget {
             ),
           ),
         ],
+      ),
+    );
+  }
+
+  // Reusable TextField Builder
+  Widget _buildTextField(String labelText, bool isPassword) {
+    return TextField(
+      obscureText: isPassword,
+      decoration: InputDecoration(
+        labelText: labelText,
+        labelStyle: GoogleFonts.poppins(
+          textStyle: const TextStyle(color: Colors.black54),
+        ),
+        filled: true,
+        fillColor: Colors.white,
+        border: OutlineInputBorder(
+          borderRadius: BorderRadius.circular(30.0),
+        ),
       ),
     );
   }

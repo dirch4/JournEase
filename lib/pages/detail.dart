@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:jurnease/core/components/button.dart';
 
 class DetailPage extends StatelessWidget {
   final String title;
@@ -36,22 +37,22 @@ class DetailPage extends StatelessWidget {
                 Positioned(
                   top: 40,
                   left: 16,
-                  child: GestureDetector(
-                    onTap: () {
-                      Navigator.pop(context);
-                    },
-                    child: Container(
-                      padding: const EdgeInsets.all(8),
-                      decoration: BoxDecoration(
-                        color: Colors.pink[100],
-                        shape: BoxShape.circle,
+                  child: DynamicButton(
+                        text: "", // Teks kosong karena hanya ingin ikon
+                        backgroundColor: Colors.pink[100]!,
+                        textColor: Colors.black,
+                        borderRadius: 50.0,
+                        padding: const EdgeInsets.all(8),
+                        onPressed: () {
+                          Navigator.pop(context);
+                        },
+                        // Tambahkan ikon di dalam tombol
+                        icon: const Icon(
+                          Icons.arrow_back,
+                          color: Colors.black,
+                        ),
                       ),
-                      child: const Icon(
-                        Icons.arrow_back,
-                        color: Colors.black,
-                      ),
-                    ),
-                  ),
+
                 ),
                 Positioned(
                   top: 10,
