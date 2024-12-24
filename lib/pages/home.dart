@@ -3,10 +3,11 @@ import 'package:jurnease/core/constants/color.dart';
 import 'package:jurnease/pages/addjournal.dart';
 import 'package:jurnease/pages/detail.dart';
 import 'package:jurnease/pages/splashscreen.dart';
-import 'package:jurnease/pages/author.dart'; // Halaman Author
+import 'package:jurnease/pages/author.dart';
 import 'package:jurnease/core/components/button.dart';
 import 'package:jurnease/core/components/font.dart';
 import 'package:jurnease/core/components/icon.dart';
+import 'package:jurnease/core/components/container.dart';
 
 class Home extends StatelessWidget {
   const Home({super.key});
@@ -27,7 +28,7 @@ class Home extends StatelessWidget {
                 'Yakin Mau Off?',
                 style: AppFonts.heading1,
               ),
-              SizedBox(height: 20),
+              const SizedBox(height: 20),
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
@@ -77,15 +78,13 @@ class Home extends StatelessWidget {
     return Scaffold(
       body: Column(
         children: [
-          Container(
+          DynamicContainer(
             height: 220.0,
             width: double.infinity,
-            decoration: BoxDecoration(
-              color: Appcolors.secondary,
-              borderRadius: const BorderRadius.only(
-                bottomLeft: Radius.circular(20.0),
-                bottomRight: Radius.circular(20.0),
-              ),
+            backgroundColor: Appcolors.secondary,
+            borderRadius: const BorderRadius.only(
+              bottomLeft: Radius.circular(20.0),
+              bottomRight: Radius.circular(20.0),
             ),
             child: Stack(
               children: [
@@ -126,7 +125,6 @@ class Home extends StatelessWidget {
                     ),
                   ),
                 ),
-                // Baris ikon "i" dan "Off" sejajar
                 Positioned(
                   top: 40,
                   left: 20,
@@ -146,7 +144,7 @@ class Home extends StatelessWidget {
                           );
                         },
                       ),
-                      const SizedBox(width: 350), // Menjaga jarak antar ikon
+                      const SizedBox(width: 350),
                       AppIcon(
                         icon: Icons.power_settings_new,
                         color: Colors.black,
@@ -162,9 +160,10 @@ class Home extends StatelessWidget {
             ),
           ),
           const SizedBox(height: 30),
-          Container(
+          DynamicContainer(
             margin: const EdgeInsets.symmetric(horizontal: 20.0),
             width: double.infinity,
+            backgroundColor: Colors.transparent,
             child: DynamicButton(
               text: "Ceritain Yuk",
               backgroundColor: Appcolors.primary,
@@ -185,8 +184,9 @@ class Home extends StatelessWidget {
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              Container(
+              DynamicContainer(
                 margin: const EdgeInsets.only(left: 20.0),
+                backgroundColor: Colors.transparent,
                 child: Text(
                   "Journaling Kamu",
                   style: AppFonts.heading2,
@@ -224,13 +224,11 @@ class Home extends StatelessWidget {
                       ),
                     );
                   },
-                  leading: Container(
+                  leading: DynamicContainer(
                     width: 50,
                     height: 50,
-                    decoration: BoxDecoration(
-                      color: Appcolors.secondary,
-                      borderRadius: BorderRadius.circular(10),
-                    ),
+                    backgroundColor: Appcolors.secondary,
+                    borderRadius: BorderRadius.circular(10),
                     child: const Icon(
                       Icons.star,
                       color: Colors.white,
