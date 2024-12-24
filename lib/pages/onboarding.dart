@@ -146,7 +146,7 @@ class Onboarding extends StatelessWidget {
               borderRadius: 8.0,
               onPressed: () {
                 Navigator.push(context, 
-                  MaterialPageRoute(builder: (context) => const LoginPage()),
+                  MaterialPageRoute(builder: (context) => const LoginBoarding()),
                 );
               },
             ),

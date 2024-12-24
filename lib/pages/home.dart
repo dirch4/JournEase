@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:jurnease/core/constants/color.dart';
 import 'package:jurnease/pages/addjournal.dart';
+import 'package:jurnease/pages/detail.dart';
+import 'package:jurnease/pages/splashscreen.dart';
 import 'package:jurnease/pages/splashscreen.dart'; 
 import 'package:jurnease/core/components/button.dart';
 
@@ -50,7 +52,6 @@ class Home extends StatelessWidget {
                       );
                     },
                   ),
-
                   // Tombol "gajadi deh"
                   DynamicButton(
                     text: "gajadi deh",
@@ -199,6 +200,18 @@ class Home extends StatelessWidget {
               itemCount: 10,
               itemBuilder: (context, index) {
                 return ListTile(
+                  onTap: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => DetailPage(
+                          title: "Hari",
+                          date: "17 Desember 2024",
+                          content: "Hari ini adalah hari yang paling membahagiakan dalam hidupku. Pagi dimulai dengan kejutan kecil dari sahabatku yang datang membawa kue favoritku, lengkap dengan ucapan penuh kehangatan. Kami menghabiskan hari dengan tawa, mengenang momen-momen indah, dan berbagi cerita tanpa henti.Saat matahari terbenam, kami berkumpul di tepi pantai, menyaksikan langit berubah warna dan merasa begitu damai. ",
+                        ),
+                      ),
+                    );
+                  },
                   leading: Container(
                     width: 50,
                     height: 50,

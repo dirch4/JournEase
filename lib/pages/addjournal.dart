@@ -11,15 +11,23 @@ class Addjournal extends StatelessWidget {
     return Scaffold(
       extendBodyBehindAppBar: true,
       appBar: AppBar(
-        backgroundColor: Colors.transparent, // Transparan
-        elevation: 0, // Hilangkan bayangan
+        backgroundColor: Colors.transparent,
+        elevation: 0, 
         leading: GestureDetector(
           onTap: () {
-            Navigator.pop(context); // Kembali ke halaman sebelumnya
+            Navigator.pop(context);
           },
-          child: Icon(
-            Icons.arrow_back_ios_new_outlined,
-            color: Colors.black, // Warna ikon back
+          child: Container(
+            margin: const EdgeInsets.all(8),
+            padding: const EdgeInsets.all(8),
+            decoration: BoxDecoration(
+              color: Colors.pink[100],
+              shape: BoxShape.circle,
+            ),
+            child: const Icon(
+              Icons.arrow_back,
+              color: Colors.black,
+            ),
           ),
         ),
       ),

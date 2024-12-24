@@ -13,9 +13,10 @@ class LoginPage extends StatelessWidget {
     return Scaffold(
       body: Stack(
         children: [
-          // Background image
+
           Container(
             decoration: const BoxDecoration(
+              color: Appcolors.primary,
               image: DecorationImage(
                 image: AssetImage('assets/background.png'),
                 fit: BoxFit.cover,
@@ -66,6 +67,27 @@ class LoginPage extends StatelessWidget {
                         MaterialPageRoute(builder: (context) => const Home()),
                       );
                     },
+
+                    style: ElevatedButton.styleFrom(
+                      backgroundColor: Appcolors.primary,
+                      padding: const EdgeInsets.symmetric(
+                          horizontal: 50, vertical: 15),
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(30.0),
+                      ),
+                    ),
+                    child: Text(
+                      'Masuk',
+                      style: GoogleFonts.poppins(
+                        textStyle: const TextStyle(
+                          decoration: TextDecoration.none,  
+                          fontSize: 18,
+                          fontWeight: FontWeight.bold,
+                          color: Colors.white,
+                        ),
+                      ),
+                    ),
+
                   ),
                   const SizedBox(height: 20),
 
