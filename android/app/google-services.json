@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "406917869237",
+    "project_id": "journease-7f1d5",
+    "storage_bucket": "journease-7f1d5.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:406917869237:android:8adf4073963f9aa2ab98fc",
+        "android_client_info": {
+          "package_name": "com.journease.app"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCOriF_TX5_oIqzJT9qcNa_t0pSLpSx0t4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

@@ -107,23 +107,21 @@ class Onboarding extends StatelessWidget {
                 Text(
                   "Kesadaran\nmembuat suatu hal\nmenjadi lebih mudah",
                   textAlign: TextAlign.start,
-                  style: AppFonts.heading1, // Use dynamic font
+                  style: AppFonts.heading1, 
                 ),
-                Padding(
-                  padding: const EdgeInsets.only(left: 30.0),
-                  child: Text(
+                 Text(
                     "Berlatihlah meditasi dan buatlah jurnal\nuntuk bersantai dan menghilangkan\nstress",
                     textAlign: TextAlign.start,
                     style: AppFonts.bodyText.copyWith(
                       color: Colors.black.withOpacity(0.8),
                     ), // Use dynamic font
                   ),
-                ),
+                
               ],
             ),
           ),
           Positioned(
-            bottom: 40,
+            bottom: 30,
             left: 80,
             child: DynamicButton(
               text: "Ayo Mulai!",

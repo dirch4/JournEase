@@ -2,12 +2,14 @@ import 'package:flutter/material.dart';
 import 'package:jurnease/core/constants/color.dart';
 import 'package:jurnease/pages/addjournal.dart';
 import 'package:jurnease/pages/detail.dart';
+import 'package:jurnease/pages/login.dart';
 import 'package:jurnease/pages/splashscreen.dart';
 import 'package:jurnease/pages/author.dart';
 import 'package:jurnease/core/components/button.dart';
 import 'package:jurnease/core/components/font.dart';
 import 'package:jurnease/core/components/icon.dart';
 import 'package:jurnease/core/components/container.dart';
+import 'package:jurnease/providers/auth_provider.dart';
 
 class Home extends StatelessWidget {
   const Home({super.key});
@@ -42,11 +44,16 @@ class Home extends StatelessWidget {
                       horizontal: 20,
                       vertical: 10,
                     ),
-                    onPressed: () {
-                      Navigator.of(context).pushReplacement(
+                    onPressed: () async {
+                      final authProvider = AuthProvider();
+                      // Proses logout
+                      await authProvider.logout();
+                      // Navigasi ke halaman Login
+                      Navigator.pushAndRemoveUntil(
+                        context,
                         MaterialPageRoute(
-                          builder: (context) => const Splashscreen(),
-                        ),
+                            builder: (context) => const LoginPage()),
+                        (route) => false,
                       );
                     },
                   ),

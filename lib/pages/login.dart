@@ -5,23 +5,34 @@ import 'package:jurnease/pages/signin.dart';
 import 'package:jurnease/core/components/button.dart';
 import 'package:jurnease/core/components/font.dart';
 import 'package:jurnease/core/components/textfield.dart';
+import 'package:jurnease/providers/auth_provider.dart';
 
-class LoginPage extends StatelessWidget {
+class LoginPage extends StatefulWidget {
   const LoginPage({super.key});
+
+  @override
+  State<LoginPage> createState() => _LoginPageState();
+}
+
+class _LoginPageState extends State<LoginPage> {
+  final TextEditingController emailController = TextEditingController();
+  final TextEditingController passwordController = TextEditingController();
+
+  @override
+  void dispose() {
+    emailController.dispose();
+    passwordController.dispose();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: Stack(
         children: [
+          // Background color
           Container(
-            decoration: const BoxDecoration(
-              color: Appcolors.primary,
-              image: DecorationImage(
-                image: AssetImage('assets/background.png'),
-                fit: BoxFit.cover,
-              ),
-            ),
+            color: Appcolors.secondary,
           ),
 
           // Content
@@ -34,20 +45,22 @@ class LoginPage extends StatelessWidget {
                   // Title
                   Text(
                     'JournEase',
-                    style: AppFonts.heading1, // Use dynamic font
+                    style: AppFonts.heading1,
                   ),
                   const SizedBox(height: 40),
 
-                  // Username Input
-                  const DynamicTextField(
-                    hintText: 'Username',
+                  // Email Input
+                  DynamicTextField(
+                    hintText: 'Email',
+                    controller: emailController,
                   ),
                   const SizedBox(height: 20),
 
                   // Password Input
-                  const DynamicTextField(
+                  DynamicTextField(
                     hintText: 'Password',
                     obscureText: true,
+                    controller: passwordController,
                   ),
                   const SizedBox(height: 20),
 
@@ -61,28 +74,49 @@ class LoginPage extends StatelessWidget {
                       vertical: 15,
                     ),
                     borderRadius: 30.0,
-                    onPressed: () {
-                      Navigator.push(
+                    onPressed: () async {
+                      final authProvider = AuthProvider();
+
+                      // Ambil input dari pengguna
+                      final email = emailController.text.trim();
+                      final password = passwordController.text.trim();
+
+                      // Panggil fungsi login
+                      final errorMessage = await authProvider.login(
+                        email: email,
+                        password: password,
+                      );
+
+                      if (errorMessage != null) {
+                        // Tampilkan pesan error
+                        ScaffoldMessenger.of(context).showSnackBar(
+                          SnackBar(content: Text(errorMessage)),
+                        );
+                        return;
+                      }
+
+                      // Pindah ke halaman Home jika sukses
+                      Navigator.pushAndRemoveUntil(
                         context,
                         MaterialPageRoute(builder: (context) => const Home()),
+                        (route) => false,
                       );
                     },
                   ),
-
                   const SizedBox(height: 20),
 
                   // Sign Up Prompt
                   Text(
                     'Belum memiliki akun JournEase?',
-                    style: AppFonts.bodyText
-                        .copyWith(color: Colors.black), // Use dynamic font
+                    style: AppFonts.bodyText.copyWith(color: Colors.black),
                   ),
                   GestureDetector(
                     onTap: () {
                       Navigator.push(
                         context,
                         MaterialPageRoute(
-                            builder: (context) => const SignInPage()),
+                          builder: (context) => const SignInPage(),
+                        ),
                       );
                     },
                     child: Text(
@@ -90,7 +124,7 @@ class LoginPage extends StatelessWidget {
                       style: AppFonts.bodyText.copyWith(
                         color: Appcolors.primary,
                         decoration: TextDecoration.underline,
-                      ), // Use dynamic font
+                      ),
                     ),
                   ),
                 ],

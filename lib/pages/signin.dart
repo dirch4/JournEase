@@ -5,23 +5,36 @@ import 'package:jurnease/pages/login.dart';
 import 'package:jurnease/core/components/button.dart';
 import 'package:jurnease/core/components/font.dart';
 import 'package:jurnease/core/components/textfield.dart';
+import 'package:jurnease/providers/auth_provider.dart';
 
-class SignInPage extends StatelessWidget {
+class SignInPage extends StatefulWidget {
   const SignInPage({super.key});
+
+  @override
+  State<SignInPage> createState() => _SignInPageState();
+}
+
+class _SignInPageState extends State<SignInPage> {
+  final TextEditingController emailController = TextEditingController();
+  final TextEditingController passwordController = TextEditingController();
+  final TextEditingController confirmPasswordController = TextEditingController();
+
+  @override
+  void dispose() {
+    emailController.dispose();
+    passwordController.dispose();
+    confirmPasswordController.dispose();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: Stack(
         children: [
-          // Background image
+          // Background color
           Container(
-            decoration: const BoxDecoration(
-              image: DecorationImage(
-                image: AssetImage('assets/background.png'),
-                fit: BoxFit.cover,
-              ),
-            ),
+            color: Appcolors.secondary,
           ),
 
           // Content
@@ -34,27 +47,30 @@ class SignInPage extends StatelessWidget {
                   // Title
                   Text(
                     'JournEase',
-                    style: AppFonts.heading1, // Use dynamic font
+                    style: AppFonts.heading1,
                   ),
                   const SizedBox(height: 40),
 
-                  // Username Input
-                  const DynamicTextField(
-                    hintText: 'Username',
+                  // Email Input
+                  DynamicTextField(
+                    hintText: 'Email',
+                    controller: emailController,
                   ),
                   const SizedBox(height: 20),
 
                   // Password Input
-                  const DynamicTextField(
+                  DynamicTextField(
                     hintText: 'Password',
                     obscureText: true,
+                    controller: passwordController,
                   ),
                   const SizedBox(height: 20),
 
                   // Confirm Password Input
-                  const DynamicTextField(
+                  DynamicTextField(
                     hintText: 'Konfirmasi Password',
                     obscureText: true,
+                    controller: confirmPasswordController,
                   ),
                   const SizedBox(height: 30),
 
@@ -68,10 +84,34 @@ class SignInPage extends StatelessWidget {
                       vertical: 15,
                     ),
                     borderRadius: 30.0,
-                    onPressed: () {
-                      Navigator.push(
+                    onPressed: () async {
+                      final authProvider = AuthProvider();
+
+                      // Ambil input dari pengguna
+                      final email = emailController.text.trim();
+                      final password = passwordController.text.trim();
+                      final confirmPassword = confirmPasswordController.text.trim();
+
+                      // Panggil fungsi register
+                      final errorMessage = await authProvider.register(
+                        email: email,
+                        password: password,
+                        confirmPassword: confirmPassword,
+                      );
+
+                      if (errorMessage != null) {
+                        // Tampilkan pesan error
+                        ScaffoldMessenger.of(context).showSnackBar(
+                          SnackBar(content: Text(errorMessage)),
+                        );
+                        return;
+                      }
+
+                      // Pindah ke halaman Home jika sukses
+                      Navigator.pushAndRemoveUntil(
                         context,
-                        MaterialPageRoute(builder: (context) => const Home()),
+                        MaterialPageRoute(builder: (context) => const LoginPage()),
+                        (route) => false,
                       );
                     },
                   ),
@@ -80,7 +120,7 @@ class SignInPage extends StatelessWidget {
                   // Already Have Account Text
                   Text(
                     'Sudah memiliki akun JournEase?',
-                    style: AppFonts.bodyText, // Use dynamic font
+                    style: AppFonts.bodyText,
                   ),
 
                   // Login Prompt
@@ -89,7 +129,8 @@ class SignInPage extends StatelessWidget {
                       Navigator.push(
                         context,
                         MaterialPageRoute(
-                            builder: (context) => const LoginPage()),
+                          builder: (context) => const LoginPage(),
+                        ),
                       );
                     },
                     child: Text(
@@ -98,7 +139,7 @@ class SignInPage extends StatelessWidget {
                         color: Appcolors.primary,
                         fontWeight: FontWeight.bold,
                         decoration: TextDecoration.underline,
-                      ), // Use dynamic font
+                      ),
                     ),
                   ),
                 ],
