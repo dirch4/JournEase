@@ -1,13 +1,23 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:jurnease/core/constants/color.dart';
 import 'package:jurnease/core/components/button.dart';
 import 'package:jurnease/core/components/font.dart';
 import 'package:jurnease/core/components/icon.dart';
 import 'package:jurnease/core/components/textfield.dart';
+import 'package:jurnease/services/firestore.dart';
 
-class Addjournal extends StatelessWidget {
+class Addjournal extends StatefulWidget {
   const Addjournal({super.key});
 
+  @override
+  State<Addjournal> createState() => _AddjournalState();
+}
+
+class _AddjournalState extends State<Addjournal> {
+  final TextEditingController titleController = TextEditingController();
+  final TextEditingController bodyController = TextEditingController();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -80,8 +90,9 @@ class Addjournal extends StatelessWidget {
                           "Judul : ",
                           style: AppFonts.bodyText, // Font dinamis
                         ),
-                        const DynamicTextField(
+                        DynamicTextField(
                           hintText: 'Masukkan judul',
+                          controller: titleController,
                         ),
                         const SizedBox(height: 10.0),
                         Text(
@@ -89,8 +100,9 @@ class Addjournal extends StatelessWidget {
                           style: AppFonts.bodyText, // Font dinamis
                         ),
                         const SizedBox(height: 5.0),
-                        const DynamicTextField(
+                        DynamicTextField(
                           hintText: 'Ceritakan pengalaman hari ini',
+                          controller: bodyController,
                           maxLines: 7,
                         ),
                       ],
@@ -107,8 +119,44 @@ class Addjournal extends StatelessWidget {
                       horizontal: 110.0,
                     ),
                     borderSide: const BorderSide(color: Colors.black, width: 1),
-                    onPressed: () {
-                      Navigator.pop(context); // Tambahkan logika lain jika diperlukan
+                    onPressed: () async {
+                      final title = titleController.text.trim();
+                      final body = bodyController.text.trim();
+
+                      if (title.isEmpty || body.isEmpty) {
+                        ScaffoldMessenger.of(context).showSnackBar(
+                          SnackBar(
+                            content: Text(
+                                'Judul dan isi jurnal tidak boleh kosong!'),
+                            backgroundColor: Colors.red,
+                          ),
+                        );
+                        return;
+                      }
+
+                      try {
+                        await FirestoreService().addJournalEntry(
+                          title: title,
+                          body: body,
+                        );
+                        // Menampilkan Snackbar sukses
+                        ScaffoldMessenger.of(context).showSnackBar(
+                          SnackBar(
+                            content: Text('Jurnal berhasil ditambahkan!'),
+                            backgroundColor: Colors.green,
+                          ),
+                        );
+                        titleController.clear();
+                        bodyController.clear();
+                      } catch (e) {
+                        // Menampilkan Snackbar gagal
+                        ScaffoldMessenger.of(context).showSnackBar(
+                          SnackBar(
+                            content: Text('Gagal menambahkan jurnal: $e'),
+                            backgroundColor: Colors.red,
+                          ),
+                        );
+                      }
                     },
                   ),
                   const SizedBox(height: 40.0),

@@ -62,6 +62,7 @@ class DetailPage extends StatelessWidget {
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 16.0),
               child: Container(
+                width: 500,
                 padding: const EdgeInsets.all(20),
                 decoration: BoxDecoration(
                   color: Colors.pink[100],
@@ -76,7 +77,7 @@ class DetailPage extends StatelessWidget {
                     ),
                     const SizedBox(height: 8),
                     Text(
-                      date,
+                      date, 
                       style: AppFonts.bodyText
                           .copyWith(color: Colors.grey), // Font dinamis
                     ),

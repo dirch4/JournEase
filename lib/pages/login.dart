@@ -98,7 +98,7 @@ class _LoginPageState extends State<LoginPage> {
                       // Pindah ke halaman Home jika sukses
                       Navigator.pushAndRemoveUntil(
                         context,
-                        MaterialPageRoute(builder: (context) => const Home()),
+                        MaterialPageRoute(builder: (context) =>  Home()),
                         (route) => false,
                       );
                     },

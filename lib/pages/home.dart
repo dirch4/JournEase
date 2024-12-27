@@ -1,18 +1,29 @@
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 import 'package:jurnease/core/constants/color.dart';
 import 'package:jurnease/pages/addjournal.dart';
 import 'package:jurnease/pages/detail.dart';
 import 'package:jurnease/pages/login.dart';
-import 'package:jurnease/pages/splashscreen.dart';
 import 'package:jurnease/pages/author.dart';
 import 'package:jurnease/core/components/button.dart';
 import 'package:jurnease/core/components/font.dart';
 import 'package:jurnease/core/components/icon.dart';
 import 'package:jurnease/core/components/container.dart';
 import 'package:jurnease/providers/auth_provider.dart';
+import 'package:jurnease/services/firestore.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 
-class Home extends StatelessWidget {
-  const Home({super.key});
+class Home extends StatefulWidget {
+  Home({super.key});
+
+  @override
+  State<Home> createState() => _HomeState();
+}
+
+class _HomeState extends State<Home> {
+  final FirestoreService _firestoreService = FirestoreService();
+  final FirebaseFirestore _db = FirebaseFirestore.instance;
+  bool isDescending = true;
 
   void showOffAlert(BuildContext context) {
     showDialog(
@@ -83,10 +94,40 @@ class Home extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      extendBodyBehindAppBar: false,
+      appBar: AppBar(
+        backgroundColor:
+            // Colors.transparent,
+            Appcolors.secondary, 
+        elevation: 0,
+        leading: AppIcon(
+          icon: Icons.info_outline,
+          color: Colors.black,
+          size: 30,
+          onPressed: () {
+            Navigator.push( 
+              context,
+              MaterialPageRoute(
+                builder: (context) => const AuthorPage(),
+              ),
+            );
+          },
+        ),
+        actions: [
+          AppIcon(
+            icon: Icons.power_settings_new,
+            color: Colors.black,
+            size: 30,
+            onPressed: () {
+              showOffAlert(context);
+            },
+          ),
+        ],
+      ),
       body: Column(
         children: [
           DynamicContainer(
-            height: 220.0,
+            height: 200.0,
             width: double.infinity,
             backgroundColor: Appcolors.secondary,
             borderRadius: const BorderRadius.only(
@@ -99,10 +140,9 @@ class Home extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.start,
                   mainAxisSize: MainAxisSize.min,
                   crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    const SizedBox(height: 80), // Naikkan ikon sedikit
+                  children: [ // Naikkan ikon sedikit
                     Padding(
-                      padding: const EdgeInsets.only(left: 20),
+                      padding: const EdgeInsets.only(left: 20, top: 30),
                       child: Text(
                         "Selamat Datang!",
                         textAlign: TextAlign.start,
@@ -121,7 +161,7 @@ class Home extends StatelessWidget {
                   ],
                 ),
                 Positioned(
-                  bottom: 0,
+                  top: -30,
                   right: -30.0,
                   child: Transform.rotate(
                     angle: -0.10,
@@ -130,37 +170,6 @@ class Home extends StatelessWidget {
                       width: 200,
                       height: 200,
                     ),
-                  ),
-                ),
-                Positioned(
-                  top: 40,
-                  left: 20,
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      AppIcon(
-                        icon: Icons.info_outline,
-                        color: Colors.black,
-                        size: 30,
-                        onPressed: () {
-                          Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                              builder: (context) => const AuthorPage(),
-                            ),
-                          );
-                        },
-                      ),
-                      const SizedBox(width: 350),
-                      AppIcon(
-                        icon: Icons.power_settings_new,
-                        color: Colors.black,
-                        size: 30,
-                        onPressed: () {
-                          showOffAlert(context);
-                        },
-                      ),
-                    ],
                   ),
                 ),
               ],
@@ -182,7 +191,7 @@ class Home extends StatelessWidget {
               onPressed: () {
                 Navigator.push(
                   context,
-                  MaterialPageRoute(builder: (context) => const Addjournal()),
+                  MaterialPageRoute(builder: (context) => Addjournal()),
                 );
               },
             ),
@@ -200,52 +209,95 @@ class Home extends StatelessWidget {
                 ),
               ),
               AppIcon(
-                icon: Icons.add,
+                icon: isDescending ? Icons.arrow_downward : Icons.arrow_upward,
                 color: Colors.black,
                 size: 30,
                 onPressed: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(builder: (context) => const Addjournal()),
-                  );
+                  setState(() {
+                    isDescending = !isDescending; // Toggle urutan
+                  });
                 },
               ),
             ],
           ),
-          const SizedBox(height: 20),
           Expanded(
-            child: ListView.builder(
-              itemCount: 10,
-              itemBuilder: (context, index) {
-                return ListTile(
-                  onTap: () {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                        builder: (context) => DetailPage(
-                          title: "Hari",
-                          date: "17 Desember 2024",
-                          content:
-                              "Hari ini adalah hari yang paling membahagiakan dalam hidupku. Pagi dimulai dengan kejutan kecil dari sahabatku yang datang membawa kue favoritku, lengkap dengan ucapan penuh kehangatan. Kami menghabiskan hari dengan tawa, mengenang momen-momen indah, dan berbagi cerita tanpa henti. Saat matahari terbenam, kami berkumpul di tepi pantai, menyaksikan langit berubah warna dan merasa begitu damai.",
+            child: StreamBuilder<QuerySnapshot>(
+              stream: _db
+                  .collection('journaling')
+                  .where("userId", isEqualTo: AuthProvider().currentUser?.uid)
+                  .orderBy('timestamp', descending: isDescending)
+                  .snapshots(),
+              builder: (context, snapshot) {
+                if (snapshot.connectionState == ConnectionState.waiting) {
+                  return const Center(
+                    child: CircularProgressIndicator(),
+                  );
+                }
+
+                if (snapshot.hasError) {
+                  print("Error: ${snapshot.error}");
+                  return const Center(
+                    child: Text(
+                      "Terjadi kesalahan saat memuat jurnal.",
+                      style: TextStyle(color: Colors.red),
+                    ),
+                  );
+                }
+
+                if (!snapshot.hasData || snapshot.data!.docs.isEmpty) {
+                  return const Center(
+                    child: Text(
+                      "Belum ada journaling kamu.",
+                      style: TextStyle(color: Colors.grey),
+                    ),
+                  );
+                }
+
+                // Menampilkan daftar jurnal
+                final journals = snapshot.data!.docs;
+
+                return ListView.builder(
+                  itemCount: journals.length,
+                  itemBuilder: (context, index) {
+                    final journal = journals[index];
+                    final title = journal["title"] ?? "Judul Tidak Ada";
+                    final body = journal["body"] ?? "Isi Tidak Ada";
+                    final timestamp = journal["timestamp"] as Timestamp;
+                    final date = DateTime.fromMillisecondsSinceEpoch(
+                        timestamp.millisecondsSinceEpoch);
+                    final formattedDate =
+                        DateFormat("d MMMM yyyy", "id_ID").format(date);
+
+                    return ListTile(
+                      onTap: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => DetailPage(
+                              title: title,
+                              date: formattedDate,
+                              content: body,
+                            ),
+                          ),
+                        );
+                      },
+                      leading: DynamicContainer(
+                        width: 50,
+                        height: 50,
+                        backgroundColor: Appcolors.secondary,
+                        borderRadius: BorderRadius.circular(10),
+                        child: const Icon(
+                          Icons.star,
+                          color: Colors.white,
                         ),
                       ),
+                      title: Text(
+                        title,
+                        style: const TextStyle(fontWeight: FontWeight.bold),
+                      ),
+                      subtitle: Text(formattedDate),
                     );
                   },
-                  leading: DynamicContainer(
-                    width: 50,
-                    height: 50,
-                    backgroundColor: Appcolors.secondary,
-                    borderRadius: BorderRadius.circular(10),
-                    child: const Icon(
-                      Icons.star,
-                      color: Colors.white,
-                    ),
-                  ),
-                  title: const Text(
-                    "Hari Paling Bahagia!",
-                    style: TextStyle(fontWeight: FontWeight.bold),
-                  ),
-                  subtitle: const Text("17 Desember 2024"),
                 );
               },
             ),
