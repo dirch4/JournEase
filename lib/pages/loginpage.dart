@@ -57,7 +57,7 @@ class LoginBoarding extends StatelessWidget {
                 DynamicButton(
                   text: 'Daftar',
                   backgroundColor: Appcolors.primary,
-                  textColor: Colors.white,
+                  textColor: Appcolors.black,
                   onPressed: () {
                     Navigator.push(
                       context,
@@ -80,7 +80,7 @@ class LoginBoarding extends StatelessWidget {
                 DynamicButton(
                   text: 'Masuk',
                   backgroundColor: Colors.white,
-                  textColor: Appcolors.primary,
+                  textColor: Appcolors.black,
                   borderSide: const BorderSide(color: Appcolors.primary),
                   onPressed: () {
                     Navigator.push(

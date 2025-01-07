@@ -17,7 +17,8 @@ class SignInPage extends StatefulWidget {
 class _SignInPageState extends State<SignInPage> {
   final TextEditingController emailController = TextEditingController();
   final TextEditingController passwordController = TextEditingController();
-  final TextEditingController confirmPasswordController = TextEditingController();
+  final TextEditingController confirmPasswordController =
+      TextEditingController();
 
   @override
   void dispose() {
@@ -34,7 +35,7 @@ class _SignInPageState extends State<SignInPage> {
         children: [
           // Background color
           Container(
-            color: Appcolors.secondary,
+            color: Appcolors.primary,
           ),
 
           // Content
@@ -42,16 +43,25 @@ class _SignInPageState extends State<SignInPage> {
             child: Padding(
               padding: const EdgeInsets.symmetric(horizontal: 20.0),
               child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   // Title
-                  Text(
-                    'JournEase',
-                    style: AppFonts.heading1,
+                  Center(
+                    child: Text(
+                      'JournEase',
+                      style: AppFonts.heading1,
+                      textAlign: TextAlign.center,
+                    ),
                   ),
                   const SizedBox(height: 40),
 
                   // Email Input
+                  Text(
+                    "Email : ",
+                    style: AppFonts.titleField,
+                    textAlign: TextAlign.start,
+                  ),
                   DynamicTextField(
                     hintText: 'Email',
                     controller: emailController,
@@ -59,6 +69,11 @@ class _SignInPageState extends State<SignInPage> {
                   const SizedBox(height: 20),
 
                   // Password Input
+                  Text(
+                    "Password : ",
+                    style: AppFonts.titleField,
+                    textAlign: TextAlign.start,
+                  ),
                   DynamicTextField(
                     hintText: 'Password',
                     obscureText: true,
@@ -67,6 +82,11 @@ class _SignInPageState extends State<SignInPage> {
                   const SizedBox(height: 20),
 
                   // Confirm Password Input
+                  Text(
+                    "Konfirmasi Password : ",
+                    style: AppFonts.titleField,
+                    textAlign: TextAlign.start,
+                  ),
                   DynamicTextField(
                     hintText: 'Konfirmasi Password',
                     obscureText: true,
@@ -75,52 +95,59 @@ class _SignInPageState extends State<SignInPage> {
                   const SizedBox(height: 30),
 
                   // Register Button
-                  DynamicButton(
-                    text: "Daftar",
-                    backgroundColor: Appcolors.primary,
-                    textColor: Colors.white,
-                    padding: const EdgeInsets.symmetric(
-                      horizontal: 50,
-                      vertical: 15,
-                    ),
-                    borderRadius: 30.0,
-                    onPressed: () async {
-                      final authProvider = AuthProvider();
-
-                      // Ambil input dari pengguna
-                      final email = emailController.text.trim();
-                      final password = passwordController.text.trim();
-                      final confirmPassword = confirmPasswordController.text.trim();
-
-                      // Panggil fungsi register
-                      final errorMessage = await authProvider.register(
-                        email: email,
-                        password: password,
-                        confirmPassword: confirmPassword,
-                      );
-
-                      if (errorMessage != null) {
-                        // Tampilkan pesan error
-                        ScaffoldMessenger.of(context).showSnackBar(
-                          SnackBar(content: Text(errorMessage)),
+                  Center(
+                    child: DynamicButton(
+                      text: "Daftar",
+                      backgroundColor: Appcolors.primary,
+                      textColor: Appcolors.black,
+                      borderSide: const BorderSide(color: Colors.black, width: 1),
+                      padding: const EdgeInsets.symmetric(
+                        horizontal: 50,
+                        vertical: 15,
+                      ),
+                      borderRadius: 30.0,
+                      onPressed: () async {
+                        final authProvider = AuthProvider();
+                    
+                        // Ambil input dari pengguna
+                        final email = emailController.text.trim();
+                        final password = passwordController.text.trim();
+                        final confirmPassword =
+                            confirmPasswordController.text.trim();
+                    
+                        // Panggil fungsi register
+                        final errorMessage = await authProvider.register(
+                          email: email,
+                          password: password,
+                          confirmPassword: confirmPassword,
                         );
-                        return;
-                      }
-
-                      // Pindah ke halaman Home jika sukses
-                      Navigator.pushAndRemoveUntil(
-                        context,
-                        MaterialPageRoute(builder: (context) => const LoginPage()),
-                        (route) => false,
-                      );
-                    },
+                    
+                        if (errorMessage != null) {
+                          // Tampilkan pesan error
+                          ScaffoldMessenger.of(context).showSnackBar(
+                            SnackBar(content: Text(errorMessage)),
+                          );
+                          return;
+                        }
+                    
+                        // Pindah ke halaman Home jika sukses
+                        Navigator.pushAndRemoveUntil(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => const LoginPage()),
+                          (route) => false,
+                        );
+                      },
+                    ),
                   ),
                   const SizedBox(height: 20),
 
                   // Already Have Account Text
-                  Text(
-                    'Sudah memiliki akun JournEase?',
-                    style: AppFonts.bodyText,
+                  Center(
+                    child: Text(
+                      'Sudah memiliki akun JournEase?',
+                      style: AppFonts.bodyText,
+                    ),
                   ),
 
                   // Login Prompt
@@ -133,12 +160,14 @@ class _SignInPageState extends State<SignInPage> {
                         ),
                       );
                     },
-                    child: Text(
-                      'Masuk',
-                      style: AppFonts.bodyText.copyWith(
-                        color: Appcolors.primary,
-                        fontWeight: FontWeight.bold,
-                        decoration: TextDecoration.underline,
+                    child: Center(
+                      child: Text(
+                        'Masuk',
+                        style: AppFonts.bodyText.copyWith(
+                          color: Appcolors.black,
+                          fontWeight: FontWeight.bold,
+                          decoration: TextDecoration.underline,
+                        ),
                       ),
                     ),
                   ),

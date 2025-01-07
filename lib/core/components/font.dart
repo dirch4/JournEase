@@ -25,4 +25,11 @@ class AppFonts {
       color: Colors.black,
     ),
   );
+  static final TextStyle titleField = GoogleFonts.poppins(
+    textStyle: TextStyle(
+      fontSize: 16.0,
+      fontWeight: FontWeight.bold,
+      color: Colors.black,
+    ),
+  );
 }
